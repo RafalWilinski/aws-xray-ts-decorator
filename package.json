@@ -1,6 +1,6 @@
 {
   "name": "aws-xray-ts-decorator",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Instrument your Promises with AWS X-Ray in Typescript with elegant decorators",
   "main": "./dist/library.js",
   "repository": {
