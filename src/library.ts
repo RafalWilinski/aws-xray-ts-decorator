@@ -1,4 +1,4 @@
-import AWSXRay, { Segment } from "aws-xray-sdk";
+import { Segment, getSegment, getLogger, captureAsyncFunc } from "aws-xray-sdk";
 
 interface StringMap {
   [key: string]: string;
@@ -22,8 +22,8 @@ const InstrumentDecoratorFactory = ({
   return (target: any, methodName: string, descriptor: PropertyDescriptor) => {
     const method = descriptor.value;
     const subsegmentName = segmentName || methodName;
-    const logger = AWSXRay.getLogger();
-    let segment = AWSXRay.getSegment();
+    const logger = getLogger();
+    let segment = getSegment();
 
     if (!segment && !forceCreateSegment) {
       logger.warn("There is no X-Ray Segment so cannot create subsegment, instrumentation ignored");
@@ -41,7 +41,7 @@ const InstrumentDecoratorFactory = ({
     // Wrap descriptor with X-Ray instrumentation
     descriptor.value = function(...args: any[]) {
       try {
-        return AWSXRay.captureAsyncFunc(subsegmentName, async (subsegment: any) => {
+        return captureAsyncFunc(subsegmentName, async (subsegment: any) => {
           if (addParamsMetadata) {
             args.forEach((arg: any, index: number) => {
               subsegment.addMetadata(
