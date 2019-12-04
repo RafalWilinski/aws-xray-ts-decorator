@@ -1,6 +1,7 @@
-Tired of using `AWSXRay.captureAsyncFunc` and/or `AWSXRay.capturePromise` polluting your methods body? Instrument your class methods with this simple decorator which wraps Promise or async function.
+# AWS X-Ray Typescript Decorator
 
-<h1 align="center">AWS X-Ray Typescript Decorator</h1>
+Tired of using `AWSXRay.captureAsyncFunc` and/or `AWSXRay.capturePromise` polluting the body of your methods? Instrument your class methods with this simple decorator which wraps Promise or async function.
+
 <p>
   <a href="https://github.com/RafalWilinski/aws-xray-ts-decorator/blob/master/LICENSE">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />

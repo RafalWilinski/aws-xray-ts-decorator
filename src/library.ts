@@ -22,13 +22,11 @@ const InstrumentDecoratorFactory = ({
   return (target: any, methodName: string, descriptor: PropertyDescriptor) => {
     const method = descriptor.value;
     const subsegmentName = segmentName || methodName;
-
+    const logger = AWSXRay.getLogger();
     let segment = AWSXRay.getSegment();
 
     if (!segment && !forceCreateSegment) {
-      console.warn(
-        "There is no X-Ray Segment so cannot create subsegment, instrumentation ignored"
-      );
+      logger.warn("There is no X-Ray Segment so cannot create subsegment, instrumentation ignored");
       return descriptor;
     }
 
@@ -89,7 +87,7 @@ const InstrumentDecoratorFactory = ({
           }
         });
       } catch (error) {
-        console.warn(`Failed to instrument ${subsegmentName}`, error);
+        logger.warn(`Failed to instrument ${subsegmentName}`, error);
 
         return descriptor;
       }
