@@ -152,7 +152,7 @@ aws-xray-sdk-postgres@^2.5.0:
   dependencies:
     "@types/pg" "*"
 
-aws-xray-sdk@^2.5.0:
+aws-xray-sdk@2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/aws-xray-sdk/-/aws-xray-sdk-2.5.0.tgz#92ed839eae6ffa314353de8f5e78b272ac3f7e17"
   integrity sha512-KBTF9QUq0zu24t+gFh3VATYDNx295VzZUUjpZ1OmIEbcs3Zqmox5L6VAqjCgGfJeLaCUAWPLkduxau3LuDpqcw==
@@ -276,6 +276,11 @@ stack-trace@0.0.x:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/stack-trace/-/stack-trace-0.0.10.tgz#547c70b347e8d32b4e108ea1a2a159e5fdde19c0"
   integrity sha1-VHxws0fo0ytOEI6hoqFZ5f3eGcA=
+
+typescript@^3.7.3:
+  version "3.7.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.3.tgz#b36840668a16458a7025b9eabfad11b66ab85c69"
+  integrity sha512-Mcr/Qk7hXqFBXMN7p7Lusj1ktCBydylfQM/FZCk5glCNQJrCUKPkMHdo9R0MTFWsC/4kPFvDS0fDPvukfCkFsw==
 
 url@0.10.3:
   version "0.10.3"

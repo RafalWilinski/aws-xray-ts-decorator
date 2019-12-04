@@ -1,18 +1,26 @@
 {
   "name": "aws-xray-ts-decorator",
-  "version": "0.0.1",
-  "description": "",
-  "main": "src/library.ts",
+  "version": "0.0.3",
+  "description": "Instrument your Promises with AWS X-Ray in Typescript with elegant decorators",
+  "main": "./dist/library.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/RafalWilinski/aws-xray-ts-decorator.git"
   },
+  "types": "./dist/types/library.d.ts",
+  "files": [
+    "/dist"
+  ],
   "keywords": [
     "aws",
     "x-ray",
     "typescript",
     "decorator"
   ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
   "author": "RafalWilinski",
   "license": "ISC",
   "bugs": {
@@ -21,5 +29,8 @@
   "homepage": "https://github.com/RafalWilinski/aws-xray-ts-decorator#readme",
   "dependencies": {
     "aws-xray-sdk": "2.5.0"
+  },
+  "devDependencies": {
+    "typescript": "3.7.3"
   }
 }

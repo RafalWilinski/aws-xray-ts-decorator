@@ -32,7 +32,9 @@ const InstrumentDecoratorFactory = ({
       return descriptor;
     }
 
-    segment = new Segment();
+    if (forceCreateSegment) {
+      segment = new Segment(`${subsegmentName}_Segment`);
+    }
 
     if (typeof descriptor.value !== "function") {
       return descriptor;
