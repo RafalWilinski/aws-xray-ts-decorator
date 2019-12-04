@@ -23,7 +23,13 @@ const InstrumentDecoratorFactory = ({
     const method = descriptor.value;
     const subsegmentName = segmentName || methodName;
     const logger = getLogger();
-    let segment = getSegment();
+    let segment;
+
+    try {
+      segment = getSegment();
+    } catch (error) {
+      logger.warn("Failed to get segment!");
+    }
 
     if (!segment && !forceCreateSegment) {
       logger.warn("There is no X-Ray Segment so cannot create subsegment, instrumentation ignored");
