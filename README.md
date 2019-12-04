@@ -41,7 +41,7 @@ class MyTestClass {
     forceCreateSegment: true, // Creates new AWSXRay.Segment if such is not created yet
     addParamsMetadata: true // Adds function parameters as metadata of subsegment
   })
-  myClassMethodWithInstrumentationArgs(input: number): Promise<number> {
+  someAsyncMethod(input: number): Promise<any> {
     ...
   }
 }
