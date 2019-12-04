@@ -28,16 +28,17 @@ npm install aws-xray-ts-decorator --save
 
 ```java
 class MyTestClass {
+  // All of these arguments are optional
   @XRayInstrumented({
-    segmentName: "customSegmentName",
-    metadata: {
+    segmentName: "customSegmentName", // by default it's name of called function
+    metadata: { // Add custom metadata as StringMap
       memberId: "1"
     },
-    annotations: {
+    annotations: { // Add custom annotations as StringMap
       context: "this is important!"
     },
-    forceCreateSegment: true,
-    addParamsMetadata: true
+    forceCreateSegment: true, // Creates new AWSXRay.Segment if such is not created yet
+    addParamsMetadata: true // Adds function parameters as metadata of subsegment
   })
   myClassMethodWithInstrumentationArgs(input: number): Promise<number> {
     ...
