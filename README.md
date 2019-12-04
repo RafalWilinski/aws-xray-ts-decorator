@@ -46,6 +46,8 @@ class MyTestClass {
 }
 ```
 
+This snippet will start a subsegment `customSegmentName` before `someAsyncMethod` gets invoked and close it as soon as it resolves.
+
 For more details, see [example](https://github.com/RafalWilinski/aws-xray-ts-decorator/blob/master/examples/index.ts).
 
 ## Author
