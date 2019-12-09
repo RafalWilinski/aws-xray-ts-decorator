@@ -46,57 +46,51 @@ const InstrumentDecoratorFactory = ({
 
     // Wrap descriptor with X-Ray instrumentation
     descriptor.value = function(...args: any[]) {
-      try {
-        return captureAsyncFunc(subsegmentName, async (subsegment: any) => {
-          if (addParamsMetadata) {
-            args.forEach((arg: any, index: number) => {
-              subsegment.addMetadata(
-                `param_${index}`,
-                typeof arg === "string" || typeof arg === "number"
-                  ? arg
-                  : JSON.stringify(arg, null, 2)
-              );
-            });
-          }
+      return captureAsyncFunc(subsegmentName, async (subsegment: any) => {
+        if (addParamsMetadata) {
+          args.forEach((arg: any, index: number) => {
+            subsegment.addMetadata(
+              `param_${index}`,
+              typeof arg === "string" || typeof arg === "number"
+                ? arg
+                : JSON.stringify(arg, null, 2)
+            );
+          });
+        }
 
-          if (metadata) {
-            Object.keys(metadata).map((entry: string) => {
-              subsegment.addMetadata(entry, metadata[entry]);
-            });
-          }
+        if (metadata) {
+          Object.keys(metadata).map((entry: string) => {
+            subsegment.addMetadata(entry, metadata[entry]);
+          });
+        }
 
-          if (annotations) {
-            Object.keys(annotations).map((entry: string) => {
-              subsegment.add(entry, annotations[entry]);
-            });
-          }
+        if (annotations) {
+          Object.keys(annotations).map((entry: string) => {
+            subsegment.add(entry, annotations[entry]);
+          });
+        }
 
-          // Call the function
-          const result = method.apply(this, args);
+        // Call the function
+        const result = method.apply(this, args);
 
-          // If it's a promise, let it resolve and then close subsegment
-          if (result.then) {
-            try {
-              const returnResult = await result;
+        // If it's a promise, let it resolve and then close subsegment
+        if (result.then) {
+          try {
+            const returnResult = await result;
 
-              subsegment.close();
-
-              return returnResult;
-            } catch (error) {
-              subsegment.close(error);
-
-              return error;
-            }
-          } else {
             subsegment.close();
-            return result;
-          }
-        });
-      } catch (error) {
-        logger.warn(`Failed to instrument ${subsegmentName}`, error);
 
-        return descriptor;
-      }
+            return returnResult;
+          } catch (error) {
+            subsegment.close(error);
+
+            throw error;
+          }
+        } else {
+          subsegment.close();
+          return result;
+        }
+      });
     };
 
     return descriptor;
