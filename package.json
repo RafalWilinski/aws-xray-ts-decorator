@@ -1,6 +1,6 @@
 {
   "name": "aws-xray-ts-decorator",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Instrument your Promises with AWS X-Ray in Typescript with elegant decorators",
   "main": "./dist/library.js",
   "repository": {
@@ -15,14 +15,18 @@
     "aws",
     "x-ray",
     "typescript",
-    "decorator"
+    "decorator",
+    "serverless",
+    "node.js",
+    "node",
+    "observability"
   ],
   "scripts": {
     "build": "tsc",
     "prepare": "npm run test && npm run build",
     "test": "jest"
   },
-  "author": "RafalWilinski",
+  "author": "RafalWilinski <rafal@dynobase.dev> (https://dynobase.dev/)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/RafalWilinski/aws-xray-ts-decorator/issues"
@@ -32,9 +36,9 @@
     "aws-xray-sdk": "2.5.0"
   },
   "devDependencies": {
-    "@types/jest": "24.0.23",
-    "jest": "24.9.0",
-    "ts-jest": "24.2.0",
-    "typescript": "3.7.3"
+    "@types/jest": "25.2.1",
+    "jest": "25.2.1",
+    "ts-jest": "25.2.1",
+    "typescript": "3.8.3"
   }
 }
